@@ -1,6 +1,6 @@
 {
   "name": "auto-delete-gcp-storage-backups",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Zero configuration backup deletion script to automatically delete backups from Google Cloud Platform Storage buckets. Runs each time after a new backup is added to the bucket and keep hourly backups for the desired number of hours and keeps one daily backup for the desired number of days.",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/zsolt-dev/auto-delete-gcp-storage-backups#readme",
   "dependencies": {
-    "@google-cloud/storage": "^1.6.0"
+    "@google-cloud/storage": "^5.19.1"
   }
 }
