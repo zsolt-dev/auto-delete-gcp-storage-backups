@@ -10,7 +10,7 @@ const numDaysToKeepOneDailyBackup = 30; // how many days to keep one daily backu
 // bucket name is the same as this script is invoked on
 
 
-const Storage = require('@google-cloud/storage');
+const { Storage } = require('@google-cloud/storage');
 // Creates a client
 const storage = new Storage();
 
