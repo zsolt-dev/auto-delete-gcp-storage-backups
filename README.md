@@ -40,7 +40,7 @@ git clone https://github.com/zsolt-dev/auto-delete-gcp-storage-backups.git
 
 2. To deploy the function, replace YOUR_TRIGGER_BUCKET_NAME with your bucket name and run the following command.
 ```bash
-gcloud beta functions deploy autoDeleteBackups --runtime nodejs8 --trigger-resource YOUR_TRIGGER_BUCKET_NAME --trigger-event google.storage.object.finalize
+gcloud functions deploy autoDeleteBackups --runtime nodejs14 --trigger-resource YOUR_TRIGGER_BUCKET_NAME --trigger-event google.storage.object.finalize
 ```
 **==WARNING==**
 **All files in the YOUR_TRIGGER_BUCKET_NAME older than specified in the settings will be deleted. Double check your bucket name!!**
@@ -50,16 +50,14 @@ gcloud beta functions deploy autoDeleteBackups --runtime nodejs8 --trigger-resou
 2. Click "Create function" button
 3. Use the following settings:
 
-- Name => any name, for example: "Auto Delete Backups from YOUR_BUCKET_NAME"
-- Memory allocated => 128MB
+- Function name => any name, for example: "AutoDeleteBackupsFromBucket_YOUR_BUCKET_NAME"
 - Trigger => Cloud Storage
 - Event Type => Finalize/Create
 - Bucket => Select your bucket with the backups.
 - WARNING: All files in the selected bucket older than specified in the settings will be deleted. Double check your bucket name!!**
-- Runtime => Node.js 8
-- Function to execute => autoDeleteBackups
+- Memory allocated => 128MB
+- Runtime => Node.js 14
+- Entry point => autoDeleteBackups
 
 4. Paste index.js from this repo to the code field
 5. Click "Create" and you are done. Now try to upload some backup and check the Stackdriver logs.
-
-

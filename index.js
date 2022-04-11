@@ -23,8 +23,8 @@ const deleteFileFromBucket = async (bucketName, fileName) => {
   return await storage.bucket(bucketName).file(fileName).delete();
 };
 
-exports.autoDeleteBackups = async (event) => {
-  const { bucket } = event;
+exports.autoDeleteBackups = async (file) => {
+  const { bucket } = file;
 
   // get the file names as an array
   let [allFiles] = await storage.bucket(bucket).getFiles();
@@ -50,7 +50,7 @@ exports.autoDeleteBackups = async (event) => {
     // get day
     const now = new Date();
     now.setDate( now.getDate() - i );
-    dateString = now.toISOString().substr(0, 10);
+    dateString = now.toISOString().substring(0, 10);
     // keep only one from that day
     const backupsFromThatDay = allFiles.filter(backup => backup.created.startsWith(dateString));
     if(backupsFromThatDay && backupsFromThatDay.length > 0) filesToKeep.add(backupsFromThatDay[0].fileName);
